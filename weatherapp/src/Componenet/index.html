@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/5cd5307fb0.js" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather app </title>
+    <style>
+*{
+    margin: 0;
+    padding: 0%;
+    box-sizing: border-box;
+   
+}
+body{
+    background-color:  #222;
+}
+.card{
+ width: 90%;   
+ max-width: 470px;
+ background-color: aqua;
+/* background: linear-gradient(135deg,#00feba,5bs48a); */
+color: #fff;
+margin: 100px auto 0;
+border-radius: 20px;
+padding: 40px 35px;
+text-align: center;
+}
+.search{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.search>input{
+   border: 0;
+   outline: 0;
+   background-color: #ebffec; 
+   color: #555;
+   padding: 10px 25px ;
+   height: 80px;
+   border-radius: 30px;
+   flex: 1;
+   margin-right: 16px;
+   font-size: 18px;
+}
+.search>button{
+    border: 0;
+   outline: 0;
+   background-color: #ebffec; 
+   width: 60px;
+   height: 60px;
+   cursor: pointer;
+}
+.search>button img{
+    width: 16px;
+}
+
+    </style>
+</head>
+<body>
+   <div  class="card">
+    <div class="search">
+        <input type="text" placeholder="enter city name" spellcheck="false"/>
+        <button> <i class="fa-solid fa-magnifying-glass"></i></button>
+
+    </div>
+    <div class="weather">
+        <img  style="width: 60%;" src='https://logodix.com/logo/448455.png' class="weather-icon"/>
+        <h1 class="temp"> 22°C</h1>
+        <h2 class="city">New York</h2>
+          <div class="deatail">
+            <div class="col">
+                <img src="images/humidity.png"/>
+
+            </div>
+          </div>
+
+    </div>
+   </div> 
+
+</body>
+</html>
