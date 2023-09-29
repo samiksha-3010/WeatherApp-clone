@@ -19,7 +19,7 @@ body{
 .card{
  width: 90%;   
  max-width: 470px;
- background-color: aqua;
+ background-color: blue;
 /* background: linear-gradient(135deg,#00feba,5bs48a); */
 color: #fff;
 margin: 100px auto 0;
@@ -56,7 +56,55 @@ text-align: center;
 .search>button img{
     width: 16px;
 }
+.weather-icon{
+    width: 170px;
+    margin-top: 30px;
+}
+.weather>h1{
+    font-size: 80px;
+    font-weight: 400px;
+}
+.weather>h2{
+    font-size: 45px;
+    font-weight: 400px;  
+    margin-top: 10px;
+}
+.deatail{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    padding: 0%0 20px;
+}
+.col{
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+.col>img{
+    width: 70px;
+    margin-right: 10px;
+}
+.humidity{
+    font-size: 28px;
+    margin-top: -6px;
 
+}
+.wind{
+    font-size: 28px;
+    margin-top: -6px;
+
+}
+.error{
+    text-align: left;
+    margin-left: 10px;
+    font-size: 40px;
+    margin-top: 10px;
+    display: none;
+}
+/* .weather{
+    display: none;  // hidden
+} */
     </style>
 </head>
 <body>
@@ -66,19 +114,96 @@ text-align: center;
         <button> <i class="fa-solid fa-magnifying-glass"></i></button>
 
     </div>
+
+    <div class="error">
+        <p>Invalid City Name</p>
+    </div>
     <div class="weather">
         <img  style="width: 60%;" src='https://logodix.com/logo/448455.png' class="weather-icon"/>
         <h1 class="temp"> 22°C</h1>
         <h2 class="city">New York</h2>
           <div class="deatail">
             <div class="col">
-                <img src="images/humidity.png"/>
+                <img src="https://tse1.mm.bing.net/th?id=OIP.UrL37mAUwgRHK9edpA2VggHaKr&pid=Api&rs=1&c=1&qlt=95&w=65&h=94"/>
 
             </div>
+            <p class="humidity">50%</p>
+            <p>Humidity</p>
           </div>
-
     </div>
+    <div class="col">
+        <img  src="https://tse1.mm.bing.net/th?id=OIP.DAYm189LSZtRKoqnymeGzwHaFy&pid=Api&P=0&h=180"/>
+        <p class="wind">50km/h</p>
+        <p>Wind Speed</p>
+    </div>
+
+
    </div> 
+   <script>
+    const apiKey = "";
+    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q";
+    const searchBox = document.querySelector(".search input")
+    const searchButton = document.querySelector(".search button")
+    const weatherIcon = document.querySelector(".weather-icon")
+    async function checkWeather(city){
+        const response = await fetch(apiUrl +`&appid=${apiKey}`);
+
+        if(response.status == 404){
+            document.querySelector(".error").style.display="block"
+            document.querySelector(".weather").style.display="none"
+        }
+        if(data.weather[0].main == Clouds){
+            weatherIcon.src="https://tse1.mm.bing.net/th?id=OIP.xV2Uz3PlvHNbIADbrpCy3AHaE8&pid=Api&rs=1&c=1&qlt=95&w=144&h=96";   
+        }
+        else if (data.weather[0].main == "clear"){
+        weatherIcon.src="";
+    }
+    else if(data.weather[0].main == "Rain"){
+        weatherIcon.src="https://tse1.mm.bing.net/th?id=OIP.UeBLWLvG9Bd2oFJRp_PgsAHaIj&pid=Api&P=0&h=180";
+    }
+    else if(data.weather[0].main == "Drizzle"){
+        weatherIcon.src="https://tse1.mm.bing.net/th?id=OIP.YpHunJak-iR_iYHS7BnmMAHaEK&pid=Api&rs=1&c=1&qlt=95&w=184&h=103";
+    }
+    else if(data.weather[0].main == "Mist"){
+        weatherIcon.src="https://tse1.mm.bing.net/th?id=OIP.8ZBAMXp3yshF0pQ-hLk9mwHaER&pid=Api&rs=1&c=1&qlt=95&w=188&h=108";
+    }
+
+        }
+        var data = await response.json();
+        // console.log(data);
+        document.querySelector(".city").innerHTML = data.name;
+        document.querySelector(".temp").innerHTML = Math.round (data.main.temp) + "°C";
+        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+        document.querySelector(".wind").innerHTML = data.wind.speed + "km/h" ;
+
+        if(data.weather[0].main == "Clouds"){ 
+        weatherIcon.src ="https://cdn2.iconfinder.com/data/icons/weather-flat-14/64/weather02-1024.png";
+     }
+    else if (data.weather[0].main == "clear"){
+        weatherIcon.src="";
+    }
+    else if(data.weather[0].main == "Rain"){
+        weatherIcon.src="https://tse1.mm.bing.net/th?id=OIP.UeBLWLvG9Bd2oFJRp_PgsAHaIj&pid=Api&P=0&h=180";
+    }
+    else if(data.weather[0].main == "Drizzle"){
+        weatherIcon.src="https://tse1.mm.bing.net/th?id=OIP.YpHunJak-iR_iYHS7BnmMAHaEK&pid=Api&rs=1&c=1&qlt=95&w=184&h=103";
+    }
+    else if(data.weather[0].main == "Mist"){
+        weatherIcon.src="https://tse1.mm.bing.net/th?id=OIP.8ZBAMXp3yshF0pQ-hLk9mwHaER&pid=Api&rs=1&c=1&qlt=95&w=188&h=108";
+    }
+
+     document.querySelector(".weather").style.display = "block" // display block
+     document.querySelector(".weather").style.display = "none" // display block
+
+
+
+    searchButton.addEventListener("click",()=>{
+        checkWeather(searchBox.value);
+
+    })
+
+checkWeather();
+   </script>
 
 </body>
 </html>
