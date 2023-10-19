@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather app </title>
+    <title>Weather app eAsy </title>
     <style>
 *{
     margin: 0;
@@ -39,7 +39,7 @@ text-align: center;
    background-color: #ebffec; 
    color: #555;
    padding: 10px 25px ;
-   height: 80px;
+   height: 60px;
    border-radius: 30px;
    flex: 1;
    margin-right: 16px;
@@ -52,6 +52,7 @@ text-align: center;
    width: 60px;
    height: 60px;
    cursor: pointer;
+   border-radius: 50%;
 }
 .search>button img{
     width: 16px;
@@ -103,7 +104,7 @@ text-align: center;
     display: none;
 }
 /* .weather{
-    display: none;  // hidden
+    display: none; 
 } */
     </style>
 </head>
@@ -136,18 +137,19 @@ text-align: center;
         <p class="wind">50km/h</p>
         <p>Wind Speed</p>
     </div>
-
-
    </div> 
    <script>
-    const apiKey = "";
-    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q";
+    const apiKey = "a8c015a484msh9d6aceac1ac1d6cp1b5e69jsna13d6fb113f2";
+    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q"; //=bangalore
     const searchBox = document.querySelector(".search input")
     const searchButton = document.querySelector(".search button")
     const weatherIcon = document.querySelector(".weather-icon")
     async function checkWeather(city){
         const response = await fetch(apiUrl +`&appid=${apiKey}`);
-
+     
+        // var data = await response.json();
+        // console.log(data);
+      
         if(response.status == 404){
             document.querySelector(".error").style.display="block"
             document.querySelector(".weather").style.display="none"
@@ -170,7 +172,7 @@ text-align: center;
 
         }
         var data = await response.json();
-        // console.log(data);
+        console.log(data);
         document.querySelector(".city").innerHTML = data.name;
         document.querySelector(".temp").innerHTML = Math.round (data.main.temp) + "°C";
         document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
@@ -202,7 +204,7 @@ text-align: center;
 
     })
 
-checkWeather();
+// checkWeather();
    </script>
 
 </body>
