@@ -18,15 +18,16 @@ function addTask(){
    inputBox.value = ""
    saveData();
 }
-listContainer.addEventListener("click",function(e){
-    if(e.target.tagname === "LI"){
+listContainer.addEventListener("click", function(e){
+    if(e.target.tagName === "LI"){
         e.target.classList.toogle("checked")
+        saveData()
     }
-    else if (e.target.tagname === "SPAN"){
+    else if (e.target.tagName === "SPAN"){
         e.target.parentElement.remove();
 
     }
-},false)
+}, false);
 
 function saveData(){
     localStorage.setItem("data",listContainer.innerHTML);
