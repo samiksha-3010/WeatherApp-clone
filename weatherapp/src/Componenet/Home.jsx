@@ -25,14 +25,12 @@ const Home = () => {
             })
             .catch(err => console.log(err))
          },[])
-
          const handleClick =() =>{
             if(name !==""){
                 const apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=${name}&appid="
                 axios.get(apiUrl)
                 .then(res =>{
                     let imagePath = "";
-
                     if(res.data.weather[0] == "Clouds"){
                         imagePath ="https://tse2.mm.bing.net/th?id=OIP.c5HMlJC9L6HSgV-Cr0Xq-AHaEK&pid=Api&P=0&h=180"
                     }  else if(res.data.weather[0] == "Clear"){
@@ -52,7 +50,6 @@ const Home = () => {
                         humidity: res.data.main.humidity,speed:res.wind.speed,image:imagePath})
                         setError("")
                 })
-
                 // .catch(err =>{
                 //     if(err.responce.status == 404){
                 //         setError("Invalid City Name")
@@ -62,10 +59,6 @@ const Home = () => {
                 //     }
                     
                 // })
-                
-
-                
-
             }
          }
 
