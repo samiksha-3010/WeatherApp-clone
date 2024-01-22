@@ -50,15 +50,7 @@ const Home = () => {
                         humidity: res.data.main.humidity,speed:res.wind.speed,image:imagePath})
                         setError("")
                 })
-                // .catch(err =>{
-                //     if(err.responce.status == 404){
-                //         setError("Invalid City Name")
-                //     } else{
-                //         setError("")
-                //         console.log(err)
-                //     }
-                    
-                // })
+      
             }
          }
 
@@ -73,7 +65,6 @@ const Home = () => {
                 <div className='error'> <p>{error}</p></div>
                 <div className='winfo'>
                     <img src= {data.image} alt='' className='icon'/>
-                    {/* <img style={{width:"100%"}} src ='https://logodix.com/logo/448455.png'/> */}
                     <h1> { Math.round(data.celcius)}0°C</h1>
                     <h2>{data.name}</h2>
                  
@@ -93,8 +84,6 @@ const Home = () => {
                          </div>
                         </div>
                         
-
-
                     </div>
                 </div>
 
